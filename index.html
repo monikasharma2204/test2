@@ -1,0 +1,127 @@
+<html>
+    <head>
+        <title>Ecommerce Product Website</title>
+        <link href="style.css" rel="stylesheet" />
+        <link
+            href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"
+            rel="stylesheet"
+        />
+    </head>
+
+    <body>
+        <img class="logo" src="images/logo.png" alt="Logo">
+        <div class="sidebar">
+            <!-- Sidebar content -->
+            <div class="top">
+                <i class="fa-sharp fa-solid fa-bars"></i>
+            </div>
+            <div class="middle">
+                <i class="fa-solid fa-user"></i>
+                <i class="fa-solid fa-magnifying-glass"></i>
+                <i class="fa-solid fa-bag-shopping"></i>
+            </div>
+            <div class="bottom"></div>
+        </div>
+        <div class="wrapper">
+            <div class="left">
+                <div class="slider">
+                    <div class="slider-images">
+                        <img id="image-1" src="images/black.png" alt="" />
+                        <img id="image-2" src="images/brown.png" alt="" />
+                        <img id="image-3" src="images/red.png" alt="" />
+                    </div>
+                    <div class="Bbutton">
+                        <i class="fa-brands fa-unity"></i
+                        ><span>View in 3D</span>
+                    </div>
+                </div>
+            </div>
+
+            <div class="content">
+                <h6 class="brand">B-BUZZ BAGS</h6>
+                <h2 class="product-heading">B-BUZZ MINI LEATHER BAG</h2>
+                <p class="price">US $980.00</p>
+                <div class="small-img">
+                    <h4>COLOR:BLACK</h4>
+
+                    <div class="colors">
+                        <div id="option-1" class="color-options">
+                            <img src="images/black.png" alt="" />
+                        </div>
+                        <div id="option-2" class="color-options">
+                            <img src="images/brown.png" alt="" />
+                        </div>
+                        <div id="option-3" class="color-options">
+                            <img src="images/red.png" alt="" />
+                        </div>
+                    </div>
+                </div>
+                <div class="size-div">
+                    <h3>Size</h3>
+                    <div>UNI</div>
+                </div>
+
+                <div class="addToCart-chat">
+                    <button type="button">
+                        <i class="fa fa-shopping-cart"></i>
+                        Add to cart
+                    </button>
+
+                    <div class="chat">
+                        <i class="fa-regular fa-comments"></i>
+                    </div>
+                </div>
+
+                <div class="description-div">
+                    <h3>Descritpion</h3>
+                    <i class="fa-solid fa-plus fa-lg"></i>
+                </div>
+                <div class="description-div">
+                    <h3>Delivery and Return</h3>
+                    <i class="fa-solid fa-plus fa-lg"></i>
+                </div>
+            </div>
+        </div>
+
+        <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+        <script>
+            $(document).ready(function () {
+                const imageWidth = 500;
+
+                // Function to handle color option selection
+                function selectColorOption(optionId) {
+                    // Get the index of the selected color option (1-indexed)
+                    const selectedOptionIndex = parseInt(
+                        optionId.replace("option-", ""),
+                        10
+                    );
+                    // Calculate the distance to slide the images container
+                    const slideDistance =
+                        (selectedOptionIndex - 1) * -imageWidth;
+                    // Slide the images container to the selected image
+                    $(".slider-images").css(
+                        "transform",
+                        `translateX(${slideDistance}px)`
+                    );
+                }
+
+                // Attach click event handlers to color options
+                $(".color-options").click(function () {
+                    // Remove the active class from all color options
+                    $(".color-options").removeClass("active");
+                    // Add the active class to the clicked color option
+                    $(this).addClass("active");
+                    // Get the ID of the clicked color option
+                    const optionId = $(this).attr("id");
+                    // Call the selectColorOption function with the clicked option's ID
+                    selectColorOption(optionId);
+                });
+
+                // By default, select the first color option and corresponding image
+                const defaultOptionId = "option-1";
+                selectColorOption(defaultOptionId);
+                $("#" + defaultOptionId).addClass("active");
+            });
+        </script>
+    </body>
+</html>
